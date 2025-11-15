@@ -1,22 +1,14 @@
 const express = require("express");
 const app = express();
 const cors = require('cors');
+const { fetchData } = require("./scripts/fetch-data.js");
 const port = 3000;
 
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
 app.use(cors())
 
-app.post('/pdf-data', (req, res) => {
-    const { pdfData } = req.body;
-
-    if (!pdfData) {
-        res.status(418).send({ response: "empty" });
-        return;
-    }
-
-    res.send({
-        response: pdfData[2],
-    })
+app.post('/:filetype', (req, res) => {
+    fetchData(req, res);
 });
 
 app.listen(port, () => console.log("server on port " + port));
