@@ -4,7 +4,7 @@ const cors = require('cors');
 const { fetchData } = require("./scripts/fetch-data.js");
 const port = 3000;
 
-app.use(express.json({ limit: '50mb' }));
+app.use(express.json({ limit: '50mb', type: "*/*" }));
 app.use(cors())
 
 app.post('/:filetype', (req, res) => {

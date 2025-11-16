@@ -1,6 +1,7 @@
 const initSqlJs = require('sql.js');
 const { Deck, Model, Package } = require('genanki-js');
 const { convertData, getUnitNames } = require("./convert.js");
+const crypto = require('crypto');
 
 let SQL = null;
 let db = null;
@@ -12,7 +13,7 @@ exports.createAPKG = async function (cardList, unitsList) {
 
 async function initDb() {
     SQL = await initSqlJs({
-        locateFile: file => 'sql-wasm.wasm'
+        locateFile: file => './templates/sql-wasm.wasm'
     });
     db = new SQL.Database();
 }
@@ -70,12 +71,14 @@ async function createPackage(cardList, unitsList) {
         let filteredCards = list.filter(card => card[2] === name);
 
         for (let card of filteredCards) {
-            deck.addNote(standardModel.note([card[0], card[1]], [tag]));
+            let guid = Date.now() - Math.floor(filteredCards.indexOf(card)*Math.E^2);
+            deck.addNote(standardModel.note([card[0], card[1]], [tag], guid));
         }
 
         ankiPackage.addDeck(deck);
     }
 
-    // ankiPackage.writeToFile('phase6-vocab.apkg');
-    return ankiPackage;
+    const ankiPackageBuffer = await ankiPackage.writeToBuffer();
+
+    return ankiPackageBuffer;
 }

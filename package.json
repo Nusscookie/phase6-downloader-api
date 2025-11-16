@@ -17,7 +17,7 @@
     "@pdfme/schemas": "^5.4.7",
     "cors": "^2.8.5",
     "express": "^5.1.0",
-    "genanki-js": "^2.0.0",
+    "genanki-js": "github:nusscookie/genanki-js#experimental",
     "html-to-text": "^9.0.5"
   }
 }

@@ -18,10 +18,8 @@ exports.fetchData = async function (req, res) {
 
     } else if (filetype == "anki-data") {
 
-        res.send({
-            response: await createAPKG(cardList, unitsList)
-        });
-
+        res.set("Content-Type", "application/octet-stream");
+        res.send(await createAPKG(cardList, unitsList))
 
     } else {
         res.send({
