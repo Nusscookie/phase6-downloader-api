@@ -40,7 +40,6 @@ exports.convertData = function(cardList, unitsList) {
     });
 
     return list;
-    // console.log(list)
 }
 
 exports.getUnitNames = function() {

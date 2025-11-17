@@ -1,7 +1,6 @@
 const initSqlJs = require('sql.js');
 const { Deck, Model, Package } = require('genanki-js');
 const { convertData, getUnitNames } = require("./convert.js");
-const crypto = require('crypto');
 
 let SQL = null;
 let db = null;

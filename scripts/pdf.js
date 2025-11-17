@@ -15,5 +15,5 @@ exports.createPDF = async function (cardList, unitsList) {
     
     const pdf = await generate({ template, inputs, plugins: { Table: table, Text: text } });
 
-    return pdf;
+    return Buffer.from(pdf);
 }
