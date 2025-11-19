@@ -25,7 +25,7 @@ exports.fetchData = async function (req, res) {
 
     } else if (filetype == "csv-data") {
 
-        // res.set("Content-Type", "application/octet-stream");
+        res.set("Content-Type", "application/octet-stream");
         res.send(createCSV(cardList, unitsList))
         console.log("POST /csv-data: CSV DATA SENT")
 

@@ -7,5 +7,6 @@ exports.createCSV = function (cardList, unitsList) {
         return `${listItem[0]}\u0009${listItem[1]}\u0009${listItem[2].replaceAll(' ', '_')}\n`;
     });
 
-    return csvContent;
+    csvContent = csvContent.toString().replaceAll(',','');
+    return Buffer.from(csvContent);
 }
