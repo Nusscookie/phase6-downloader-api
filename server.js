@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require('cors');
 const { fetchData } = require("./scripts/fetch-data.js");
-const port = 3000;
+const port = process.env.PORT || 3000 
 
 app.use(express.json({ limit: '50mb', type: "*/*" }));
 app.use(cors())
