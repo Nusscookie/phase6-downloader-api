@@ -3,7 +3,7 @@ const { createAPKG } = require("./anki.js");
 const { createCSV } = require("./csv.js");
 
 exports.fetchData = async function (req, res) {
-    const { cardList, unitsList } = req.body;
+    const { cardList, unitsList, motherTongue, languageToLearn } = req.body;
     const { filetype } = req.params;
 
     if (!cardList) {
@@ -14,7 +14,7 @@ exports.fetchData = async function (req, res) {
     if (filetype == "pdf-data") {
 
         res.set("Content-Type", "application/octet-stream");
-        res.send(await createPDF(cardList, unitsList))
+        res.send(await createPDF(cardList, unitsList, motherTongue, languageToLearn))
         console.log("POST /pdf-data: PDF DATA SENT")
 
     } else if (filetype == "anki-data") {
